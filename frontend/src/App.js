@@ -66,6 +66,12 @@ function App() {
   return (
     <div className="quiz-app">
       <h1>Quiz App</h1>
+      <div className="image-container">
+        <img
+          src={"data:image/jpeg;base64," + quizData[currentQuestion].data}
+          alt="Quiz Illustration"
+        />
+      </div>
       <p id="question">{quizData[currentQuestion].question}</p>
       <div id="options">
         {quizData[currentQuestion].options.map((option, index) => (

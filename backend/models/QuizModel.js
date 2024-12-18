@@ -5,6 +5,7 @@ const QuizSchema = new mongoose.Schema({
   options: { type: [String], required: true },
   answer: { type: String, required: true },
   category: { type: String, required: true },
+  data: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Quiz", QuizSchema);

@@ -16,3 +16,22 @@ body {
   align-items: center;
   flex-direction: column;
 } */
+
+/* Conteneur pour l'image */
+.image-container {
+  width: 400px; /* Largeur maximale de l'image */
+  height: 250px; /* Hauteur maximale de l'image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Coupe l'excès si nécessaire */
+  /* border: 1px solid #ccc;  Optionnel : bordure pour mieux visualiser 
+  background-color: #f9f9f9; Optionnel : couleur de fond */
+}
+
+/* Image responsive */
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ajuste l'image sans déformer */
+}
