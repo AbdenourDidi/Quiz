@@ -25,25 +25,7 @@ app.get("/api/quiz", async (req, res) => {
       {
         $sample: { size: 20 },
       },
-      // {
-      //   $group: {
-      //     _id: "$category",
-      //     question: { $first: "$$ROOT" }, // Prendre la première question de chaque catégorie
-      //   },
-      // },
-      // { $limit: 20 },
-      // {
-      //   $project: {
-      //     _id: "$question._id",
-      //     question: "$question.question",
-      //     options: "$question.options",
-      //     answer: "$question.answer",
-      //     category: "$question.category",
-      //     data: "$question.data",
-      //   },
-      // },
     ]);
-    // console.log("Fetched quizzes:", quizzesDB);
     console.log("GET");
 
     res.json(quizzesDB);
