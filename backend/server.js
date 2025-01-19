@@ -1,4 +1,3 @@
-// backend/server.js
 const Quiz = require("./models/QuizModel"); // Assurez-vous que le chemin est correct
 
 const express = require("express");
@@ -22,11 +21,32 @@ mongoose
 
 app.get("/api/quiz", async (req, res) => {
   try {
-    const quizzes = await Quiz.find();
-    // console.log("Fetched quizzes:", quizzes);
+    const quizzesDB = await Quiz.aggregate([
+      {
+        $sample: { size: 20 },
+      },
+      // {
+      //   $group: {
+      //     _id: "$category",
+      //     question: { $first: "$$ROOT" }, // Prendre la première question de chaque catégorie
+      //   },
+      // },
+      // { $limit: 20 },
+      // {
+      //   $project: {
+      //     _id: "$question._id",
+      //     question: "$question.question",
+      //     options: "$question.options",
+      //     answer: "$question.answer",
+      //     category: "$question.category",
+      //     data: "$question.data",
+      //   },
+      // },
+    ]);
+    // console.log("Fetched quizzes:", quizzesDB);
     console.log("GET");
 
-    res.json(quizzes);
+    res.json(quizzesDB);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch quizzes" });
   }

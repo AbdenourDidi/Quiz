@@ -52,6 +52,18 @@ function App() {
 
       setCurrentQuestion(0); // Réinitialise la question
       setScore(0); // Réinitialise le score
+      setQuizData([]);
+      axios
+        .get("http://localhost:5000/api/quiz") // Remplacez par l'URL de votre API
+        .then((response) => {
+          setQuizData(response.data); // Remplace les anciennes questions par les nouvelles
+        })
+        .catch((error) => {
+          console.error(
+            "Erreur lors de la récupération des nouvelles questions",
+            error
+          );
+        });
     }
     setShowNext(false);
 
