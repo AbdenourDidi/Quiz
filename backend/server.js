@@ -1,4 +1,4 @@
-const Quiz = require("./models/QuizModel"); // Assurez-vous que le chemin est correct
+const Quiz = require("./models/QuizModel");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -8,11 +8,9 @@ require("dotenv").config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Example route
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)

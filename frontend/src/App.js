@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/quiz") // URL du backend
+      .get("http://localhost:5000/api/quiz")
       .then((response) => {
         setQuizData(response.data); // Stocke les données dans l'état
       })
@@ -66,7 +66,7 @@ function App() {
     setScore(0); // Réinitialise le score
     setQuizData([]);
     axios
-      .get("http://localhost:5000/api/quiz") // Remplacez par l'URL de votre API
+      .get("http://localhost:5000/api/quiz")
       .then((response) => {
         setQuizData(response.data); // Remplace les anciennes questions par les nouvelles
       })
