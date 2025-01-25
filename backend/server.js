@@ -18,9 +18,7 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    "mongodb+srv://abdenourdidi4:batbat123@cluster0.1kpao.mongodb.net/QuizApp?retryWrites=true&w=majority&appName=cluster0"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB", err));
 
@@ -32,10 +30,7 @@ app.get("/api/quiz", async (req, res) => {
   try {
     console.log("Fetching quizzes...");
 
-    const quizzesDB = await Quiz.aggregate([
-      { $sample: { size: 5 } },
-      { $project: { question: 1, options: 1 } }, // Remplace par les champs nécessaires
-    ]);
+    const quizzesDB = await Quiz.aggregate([{ $sample: { size: 5 } }]);
     console.log("Quizzes fetched:", quizzesDB);
 
     res.json(quizzesDB);
