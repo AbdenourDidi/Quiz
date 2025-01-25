@@ -28,9 +28,10 @@ app.get("/", (req, res) => {
 
 app.get("/api/quiz", async (req, res) => {
   try {
-    // const count = await Quiz.countDocuments(); // Compte les documents
-    // const random = Math.floor(Math.random() * count); // Sélectionne un index aléatoire
-    const quizzesDB = await Quiz.find().limit(1); // Récupère les quiz aléatoires
+    const quizzesDB = await Quiz.aggregate([
+      { $sample: { size: 20 } },
+      { $project: { question: 1, options: 1 } }, // Remplace par les champs nécessaires
+    ]);
     res.json(quizzesDB);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch quizzes" });
@@ -40,6 +41,6 @@ app.get("/api/quiz", async (req, res) => {
 // Exporte l'application pour Vercel
 module.exports = app;
 
-// // Start server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
