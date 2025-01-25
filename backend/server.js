@@ -1,4 +1,4 @@
-const Quiz = require("./models/QuizModel"); // Assurez-vous que le chemin est correct
+const Quiz = require("./models/QuizModel");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -8,11 +8,9 @@ require("dotenv").config();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Example route
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
@@ -25,25 +23,7 @@ app.get("/api/quiz", async (req, res) => {
       {
         $sample: { size: 20 },
       },
-      // {
-      //   $group: {
-      //     _id: "$category",
-      //     question: { $first: "$$ROOT" }, // Prendre la première question de chaque catégorie
-      //   },
-      // },
-      // { $limit: 20 },
-      // {
-      //   $project: {
-      //     _id: "$question._id",
-      //     question: "$question.question",
-      //     options: "$question.options",
-      //     answer: "$question.answer",
-      //     category: "$question.category",
-      //     data: "$question.data",
-      //   },
-      // },
     ]);
-    // console.log("Fetched quizzes:", quizzesDB);
     console.log("GET");
 
     res.json(quizzesDB);

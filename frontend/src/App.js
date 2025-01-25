@@ -7,10 +7,11 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showNext, setShowNext] = useState(false);
+  const [showScoreModal, setShowScoreModal] = useState(false);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/quiz") // URL du backend
+      .get("http://localhost:5000/api/quiz")
       .then((response) => {
         setQuizData(response.data); // Stocke les données dans l'état
       })
@@ -44,26 +45,10 @@ function App() {
   };
 
   const next = () => {
-    setCurrentQuestion((prev) => prev + 1); // Passe à la question suivante
     if (currentQuestion === quizData.length - 1) {
-      alert(
-        `Bravo ! Vous avez terminé le quiz.\nVotre score : ${score}/${quizData.length}`
-      );
-
-      setCurrentQuestion(0); // Réinitialise la question
-      setScore(0); // Réinitialise le score
-      setQuizData([]);
-      axios
-        .get("http://localhost:5000/api/quiz") // Remplacez par l'URL de votre API
-        .then((response) => {
-          setQuizData(response.data); // Remplace les anciennes questions par les nouvelles
-        })
-        .catch((error) => {
-          console.error(
-            "Erreur lors de la récupération des nouvelles questions",
-            error
-          );
-        });
+      setShowScoreModal(true);
+    } else {
+      setCurrentQuestion((prev) => prev + 1); // Passe à la question suivante
     }
     setShowNext(false);
 
@@ -73,6 +58,24 @@ function App() {
       btn.disabled = false;
       btn.style.backgroundColor = "";
     });
+  };
+
+  const restartQuiz = () => {
+    setShowScoreModal(false); // Masque la modale
+    setCurrentQuestion(0); // Réinitialise le quiz
+    setScore(0); // Réinitialise le score
+    setQuizData([]);
+    axios
+      .get("http://localhost:5000/api/quiz")
+      .then((response) => {
+        setQuizData(response.data); // Remplace les anciennes questions par les nouvelles
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération des nouvelles questions",
+          error
+        );
+      });
   };
 
   return (
@@ -102,6 +105,19 @@ function App() {
         </button>
       )}
       <p id="score">Score : {score}</p>
+
+      {showScoreModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Quiz Terminé 🎉</h2>
+            <p>Félicitations ! Vous avez terminé le quiz.</p>
+            <p>
+              Votre score : <strong>{score}</strong> / {quizData.length}
+            </p>
+            <button onClick={restartQuiz}>Recommencer</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

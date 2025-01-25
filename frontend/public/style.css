@@ -7,16 +7,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
   gap: 10px;
 }
-
-/* h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-} */
 
 /* Conteneur pour l'image */
 .image-container {
@@ -78,7 +70,54 @@ p {
   margin: 10px 0;
 }
 
-#score {
-  font-weight: bold;
-  margin-top: 15px;
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: slide-down 0.3s ease-out;
+}
+
+.modal-content h2 {
+  color: #4caf50;
+  font-size: 24px;
+}
+
+.modal-content button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modal-content button:hover {
+  background-color: #45a049;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
