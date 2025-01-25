@@ -18,7 +18,9 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(
+    "mongodb+srv://abdenourdidi4:batbat123@cluster0.1kpao.mongodb.net/QuizApp?retryWrites=true&w=majority&appName=cluster0"
+  )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Failed to connect to MongoDB", err));
 
@@ -46,5 +48,5 @@ app.get("/api/quiz", async (req, res) => {
 module.exports = app;
 
 // Start server
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
