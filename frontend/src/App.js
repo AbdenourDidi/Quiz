@@ -66,7 +66,7 @@ function App() {
     setScore(0); // Réinitialise le score
     setQuizData([]);
     axios
-      .get("http://localhost:5000/api/quiz")
+      .get("https://quizserver-abdenourdidis-projects.vercel.app/api/quiz")
       .then((response) => {
         setQuizData(response.data); // Remplace les anciennes questions par les nouvelles
       })
