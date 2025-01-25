@@ -10,7 +10,6 @@ body {
   gap: 10px;
 }
 
-/* Conteneur pour l'image */
 .image-container {
   width: 400px;
   max-width: 600px;
@@ -20,7 +19,6 @@ body {
   overflow: hidden;
 }
 
-/* Image responsive */
 .image-container img {
   width: 100%;
   height: auto;
@@ -68,6 +66,7 @@ p {
   font-size: 1.1rem;
   color: #444;
   margin: 10px 0;
+  margin-right: 20%;
 }
 
 .modal-overlay {
@@ -121,3 +120,32 @@ p {
     opacity: 1;
   }
 }
+
+/* Mobile : écran de moins de 600px */
+/* @media (max-width: 600px) {
+  body {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .image-container {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 15px;
+  }
+
+  button {
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+
+  #btnNext {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+} */
