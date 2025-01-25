@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 app.get("/api/quiz", async (req, res) => {
   try {
     const quizzesDB = await Quiz.aggregate([
-      { $sample: { size: 20 } },
+      { $sample: { size: 5 } },
       { $project: { question: 1, options: 1 } }, // Remplace par les champs nécessaires
     ]);
     res.json(quizzesDB);
@@ -42,5 +42,5 @@ app.get("/api/quiz", async (req, res) => {
 module.exports = app;
 
 // Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
