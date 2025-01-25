@@ -30,7 +30,7 @@ app.get("/api/quiz", async (req, res) => {
   try {
     const count = await Quiz.countDocuments(); // Compte les documents
     const random = Math.floor(Math.random() * count); // Sélectionne un index aléatoire
-    const quizzesDB = await Quiz.find().skip(random).limit(20); // Récupère les quiz aléatoires
+    const quizzesDB = await Quiz.find().skip(random).limit(5); // Récupère les quiz aléatoires
     res.json(quizzesDB);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch quizzes" });
