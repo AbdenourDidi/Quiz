@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
-
 app.use(
   cors({
     origin: [""],
@@ -41,6 +40,9 @@ app.get("/api/quiz", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch quizzes" });
   }
 });
+
+// Exporte l'application pour Vercel
+module.exports = app;
 
 // // Start server
 // const PORT = process.env.PORT || 5000;
