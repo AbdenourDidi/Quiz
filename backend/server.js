@@ -28,10 +28,14 @@ app.get("/", (req, res) => {
 
 app.get("/api/quiz", async (req, res) => {
   try {
+    console.log("Fetching quizzes...");
+
     const quizzesDB = await Quiz.aggregate([
       { $sample: { size: 5 } },
       { $project: { question: 1, options: 1 } }, // Remplace par les champs nécessaires
     ]);
+    console.log("Quizzes fetched:", quizzesDB);
+
     res.json(quizzesDB);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch quizzes" });
