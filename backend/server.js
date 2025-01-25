@@ -28,10 +28,12 @@ app.get("/", (req, res) => {
 
 app.get("/api/quiz", async (req, res) => {
   try {
-    console.log("Fetching quizzes...");
-
-    const quizzesDB = await Quiz.aggregate([{ $sample: { size: 5 } }]);
-    console.log("Quizzes fetched:", quizzesDB);
+    const quizzesDB = await Quiz.aggregate([
+      {
+        $sample: { size: 20 },
+      },
+    ]);
+    console.log("GET");
 
     res.json(quizzesDB);
   } catch (err) {
