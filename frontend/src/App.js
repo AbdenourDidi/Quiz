@@ -11,9 +11,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(
-        "https://quizserver-2b8v52hev-abdenourdidis-projects.vercel.app/api/quiz"
-      )
+      .get("https://quizserver-abdenourdidis-projects.vercel.app/api/quiz")
       .then((response) => {
         setQuizData(response.data); // Stocke les données dans l'état
       })
