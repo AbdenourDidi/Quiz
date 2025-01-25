@@ -9,7 +9,7 @@ require("dotenv").config();
 const app = express();
 app.use(
   cors({
-    origin: "https://quizapp-abdenourdidis-projects.vercel.app", // Remplace par l'URL exacte de ton front-end
+    origin: "https://quizapp-abdenourdidis-projects.vercel.app",
     methods: ["POST", "GET"],
     credentials: true,
   })
